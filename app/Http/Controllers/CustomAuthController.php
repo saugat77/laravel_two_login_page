@@ -25,11 +25,11 @@ class CustomAuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
+            return view('auth.customer-dasboard')->intended('dashboard')
                         ->withSuccess('Signed in');
         }
 
-        return redirect("customer.login")->withSuccess('Login details are not valid');
+        return view("auth.customer-dasboard")->withSuccess('Login details are not valid');
     }
 
 
@@ -44,14 +44,14 @@ class CustomAuthController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email|unique:customers',
             'password' => 'required|min:6',
         ]);
 
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect("auth.customer-dashboard")->withSuccess('You have signed-in');
+        return view("auth.customer-dasboard")->withSuccess('You have signed-in');
     }
 
 

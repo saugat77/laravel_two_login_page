@@ -1,6 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\customer;
+use Hash;
+use Session;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
